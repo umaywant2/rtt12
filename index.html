@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTT/12 Engine — Unified Topology Synthesis</title>
+
+  <link rel="stylesheet" href="./assets/css/rtt12.css" />
+
+  <meta name="description" content="RTT/12 — Unified Topology Synthesis Engine for TriadicFrameworks." />
+  <meta property="og:title" content="RTT/12 Engine" />
+  <meta property="og:description" content="Unified Topology Synthesis for TriadicFrameworks." />
+  <meta property="og:image" content="./assets/og/rtt12.png" />
+</head>
+
+<body>
+  <main class="rtt12-container">
+
+    <section class="rtt12-header">
+      <h1>RTT/12 Engine</h1>
+      <p class="subtitle">Unified Topology Synthesis</p>
+    </section>
+
+    <section class="rtt12-description">
+      <p>
+        <strong>RTT/12</strong> is the final synthesis engine in the TriadicFrameworks RTT series.
+        It consumes the four RTT/3 operator outputs—structural topology, intersections,
+        coherence surfaces, and GPU topology—and produces a unified RTT/12 topology.
+      </p>
+
+      <p>
+        RTT/12 is designed for regime-aware analysis, coherence–drift overlays,
+        GPU-aligned refinement, and downstream visualization.
+      </p>
+    </section>
+
+    <section class="rtt12-pipeline">
+      <h2>Pipeline Position</h2>
+      <pre class="pipeline">
+RTT/1 → RTT/2 → RTT/3 → RTT/12
+      </pre>
+    </section>
+
+    <section class="rtt12-links">
+      <h2>Module Files</h2>
+      <ul>
+        <li><a href="./module.json">module.json</a></li>
+        <li><a href="./engine.json">engine.json</a></li>
+        <li><a href="./api/unify.client.js">unify.client.js</a></li>
+        <li><a href="./api/unify.server.js">unify.server.js</a></li>
+        <li><a href="./api/unify.worker.js">unify.worker.js</a></li>
+        <li><a href="./api/unify.openapi.yaml">unify.openapi.yaml</a></li>
+        <li><a href="./api/unify.schema.json">unify.schema.json</a></li>
+        <li><a href="./api/unify.test.js">unify.test.js</a></li>
+      </ul>
+    </section>
+
+    <footer class="rtt12-footer">
+      <p>TriadicFrameworks • RTT Series • 2026.1</p>
+    </footer>
+
+  </main>
+</body>
+</html>
 
