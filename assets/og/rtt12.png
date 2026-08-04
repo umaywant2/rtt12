@@ -1,1 +1,91 @@
+# **RTT/12 — Official OG Image Design Spec**
 
+### **Canvas**
+- **Size:** 1200 × 630 (standard OG dimensions)  
+- **Background:** #000000 (Triadic Substrate Black)  
+- **Gradient:** Subtle vertical fade from #000000 → #0a0a0a  
+
+---
+
+# **1. Title Block**
+**Text:** `RTT/12 — Unified Synthesis`  
+**Font:** Inter / Semibold  
+**Size:** 72px  
+**Color:** #FFFFFF  
+**Letter‑spacing:** +1%  
+**Position:** Top-left, 80px from top, 80px from left  
+
+---
+
+# **2. Triadic Regime Bars**
+Three horizontal bars, matching RTT canon:
+
+| Regime | Color | Height | Position |
+|--------|--------|---------|----------|
+| Structural (S) | #00e5ff | 8px | Under title, full width |
+| Energetic (E) | #ff00e5 | 8px | 12px below S |
+| Resonant (R) | #ffe500 | 8px | 12px below E |
+
+These bars visually unify RTT/1 → RTT/12.
+
+---
+
+# **3. Central Geometry**
+A **triadic convergence glyph**, consistent with your RTT/3 topology and RTT/12 pipeline SVG:
+
+### Shape
+- Three interlocking arcs forming a tri‑node convergence  
+- Each arc colored by regime:
+  - Structural: #00e5ff  
+  - Energetic: #ff00e5  
+  - Resonant: #ffe500  
+
+### Style
+- Stroke: 4px  
+- Glow: 12px outer neon blur  
+- Size: ~420px diameter  
+- Position: Centered  
+
+### Meaning
+Represents RTT/12’s role as the **unification engine**.
+
+---
+
+# **4. Metadata Block**
+Bottom-left corner, matching your canonical metadata style.
+
+```
+Engine: RTT/12
+Version: 2026.1
+Pipeline: rtt1 → rtt2 → rtt3 → rtt12
+Status: Unified
+```
+
+### Style
+- Font: Inter / Medium  
+- Size: 22px  
+- Color: #cccccc  
+- Background: #111111  
+- Padding: 24px  
+- Border-left: 4px solid #00e5ff  
+- Border-radius: 8px  
+
+---
+
+# **5. Signature Accent**
+Bottom-right corner:
+
+**Text:** `TriadicFrameworks`  
+**Font:** Inter / Semibold  
+**Size:** 26px  
+**Color:** #00e5ff  
+**Opacity:** 0.85  
+
+---
+
+# **6. Export Requirements**
+- PNG  
+- sRGB  
+- 1200×630  
+- No compression artifacts  
+- Ensure neon glows survive export  
