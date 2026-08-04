@@ -1,1 +1,154 @@
+openapi: 3.1.0
+info:
+  title: RTT/12 Aggregator API
+  version: 2026.1
+  description: >
+    Aggregates unifiedTopology, dashboard model, pipeline metadata, GPU-aligned
+    structures, regime surfaces, and coherence–drift overlays into a single
+    coherent RTT/12 aggregate model.
+
+servers:
+  - url: /api/rtt12/aggregate
+    description: Local aggregate execution endpoint
+
+paths:
+  /aggregator/aggregate:
+    post:
+      summary: Aggregate RTT/12 structures into a single model
+      operationId: rtt12AggregatorAggregate
+      description: >
+        Accepts RTT/12 unifiedTopology, dashboard model, and pipeline metadata.
+        Validates required fields and returns a structured aggregate model
+        aligned with RTT12AggregatorGraph.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AggregateInput"
+
+      responses:
+        "200":
+          description: Aggregate model successfully produced
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AggregateOutput"
+
+        "400":
+          description: Aggregation validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+
+components:
+  schemas:
+
+    AggregateInput:
+      type: object
+      required:
+        - unifiedTopology
+        - dashboardModel
+        - pipelineMetadata
+      properties:
+        unifiedTopology:
+          type: object
+          required:
+            - clusters
+            - regimeSurfaces
+            - coherenceDrift
+            - gpuAligned
+            - metadata
+          properties:
+            clusters:
+              type: array
+              items: { type: object }
+            regimeSurfaces:
+              type: array
+              items: { type: object }
+            coherenceDrift:
+              type: array
+              items: { type: object }
+            gpuAligned:
+              type: array
+              items: { type: object }
+            metadata:
+              type: object
+              properties:
+                engine:
+                  type: string
+                  example: "RTT/12"
+                version:
+                  type: string
+                  example: "2026.1"
+                pipeline:
+                  type: string
+                  example: "rtt1→rtt2→rtt3→rtt12"
+        dashboardModel:
+          type: object
+          description: Coherence dashboard representation of unifiedTopology.
+        pipelineMetadata:
+          type: object
+          description: Pipeline lineage metadata from RTT/1 → RTT/2 → RTT/3 → RTT/12.
+          properties:
+            pipeline:
+              type: string
+              example: "rtt1→rtt2→rtt3→rtt12"
+
+    AggregateOutput:
+      type: object
+      description: Structured RTT/12 aggregate model.
+      properties:
+        engine:
+          type: string
+          example: "RTT/12"
+        version:
+          type: string
+          example: "2026.1"
+        graph:
+          type: object
+          description: Aggregator graph definition.
+        aggregate:
+          type: object
+          properties:
+            unifiedTopology:
+              type: object
+            dashboardModel:
+              type: object
+            pipelineMetadata:
+              type: object
+            gpuAligned:
+              type: array
+              items: { type: object }
+            regimeSurfaces:
+              type: array
+              items: { type: object }
+            coherenceDrift:
+              type: array
+              items: { type: object }
+            metadata:
+              type: object
+              properties:
+                engine:
+                  type: string
+                version:
+                  type: string
+                pipeline:
+                  type: string
+                aggregated:
+                  type: boolean
+                  example: true
+
+    ErrorOutput:
+      type: object
+      description: Aggregation validation error envelope.
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "U12-AGG-004: Missing unifiedTopology field 'clusters'"
 
