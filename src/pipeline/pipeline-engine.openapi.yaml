@@ -1,1 +1,169 @@
+openapi: 3.1.0
+info:
+  title: RTT/12 Pipeline Engine API
+  version: 2026.1
+  description: >
+    Validates RTT/1 → RTT/2 → RTT/3 → RTT/12 pipeline lineage and prepares
+    unified operator input for RTT/12 synthesis.
+
+servers:
+  - url: /api/rtt12
+    description: Local pipeline execution
+
+paths:
+  /pipeline/prepare:
+    post:
+      summary: Validate RTT pipeline and prepare RTT/12 operator payload
+      operationId: rtt12PipelinePrepare
+      description: >
+        Accepts RTT/1, RTT/2, and RTT/3 outputs and validates the full pipeline
+        lineage. Returns a prepared RTT/12 operator payload suitable for
+        rtt12-synthesis.js.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineInput"
+
+      responses:
+        "200":
+          description: Prepared RTT/12 operator payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineOutput"
+
+        "400":
+          description: Pipeline validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+
+components:
+  schemas:
+
+    PipelineInput:
+      type: object
+      required:
+        - rtt1
+        - rtt2
+        - rtt3
+      properties:
+        rtt1:
+          type: object
+          required:
+            - claritySurface
+          properties:
+            claritySurface:
+              type: object
+              description: RTT/1 clarity surface output.
+            loadBearing:
+              type: object
+            contradictionScan:
+              type: object
+            structuralCritique:
+              type: object
+
+        rtt2:
+          type: object
+          required:
+            - gpuStack
+          properties:
+            gpuStack:
+              type: object
+              required:
+                - regimeView
+                - driftView
+                - coherenceView
+              properties:
+                regimeView:
+                  type: object
+                driftView:
+                  type: object
+                coherenceView:
+                  type: object
+
+        rtt3:
+          type: object
+          required:
+            - structuralTopology
+            - intersections
+            - surfaces
+            - gpuTopology
+          properties:
+            structuralTopology:
+              type: array
+              items: { type: object }
+            intersections:
+              type: array
+              items: { type:object }
+            surfaces:
+              type: array
+              items: { type: object }
+            gpuTopology:
+              type: object
+              required:
+                - topology
+              properties:
+                topology:
+                  type: object
+                  required:
+                    - surfaces
+                    - intersections
+                    - overlays
+                  properties:
+                    surfaces:
+                      type: array
+                      items: { type: object }
+                    intersections:
+                      type: array
+                      items: { type: object }
+                    overlays:
+                      type: array
+                      items: { type: object }
+
+    PipelineOutput:
+      type: object
+      description: Prepared RTT/12 operator payload.
+      properties:
+        engine:
+          type: string
+          example: "RTT/12"
+        version:
+          type: string
+          example: "2026.1"
+        structuralTopology:
+          type: array
+          items: { type: object }
+        intersections:
+          type: array
+          items: { type: object }
+        surfaces:
+          type: array
+          items: { type: object }
+        gpuTopology:
+          type: object
+        metadata:
+          type: object
+          properties:
+            pipeline:
+              type: string
+              example: "rtt1→rtt2→rtt3→rtt12"
+            validated:
+              type: boolean
+              example: true
+
+    ErrorOutput:
+      type: object
+      description: Pipeline validation error envelope.
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "U12-PIPE-001: Missing RTT/1 field 'claritySurface'"
 
