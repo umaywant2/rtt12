@@ -1,1 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTT/12 Pipeline Metadata Schema",
+  "description": "Schema for RTT/12 pipeline validation output.",
+  "type": "object",
+
+  "properties": {
+    "engine": {
+      "type": "string",
+      "const": "RTT/12"
+    },
+    "version": {
+      "type": "string"
+    },
+    "pipeline": {
+      "type": "string",
+      "description": "RTT lineage string: rtt1→rtt2→rtt3→rtt12"
+    },
+    "validated": {
+      "type": "boolean"
+    }
+  },
+
+  "required": [
+    "engine",
+    "version",
+    "pipeline",
+    "validated"
+  ],
+
+  "$defs": {
+    "RTT1": {
+      "type": "object",
+      "required": ["claritySurface"],
+      "properties": {
+        "claritySurface": { "type": "object" }
+      }
+    },
+
+    "RTT2": {
+      "type": "object",
+      "required": ["regimeView", "driftView", "coherenceView"],
+      "properties": {
+        "regimeView": { "type": "object" },
+        "driftView": { "type": "object" },
+        "coherenceView": { "type": "object" }
+      }
+    },
+
+    "RTT3": {
+      "type": "object",
+      "required": [
+        "structuralTopology",
+        "intersections",
+        "surfaces",
+        "gpuTopology"
+      ],
+      "properties": {
+        "structuralTopology": { "type": "object" },
+        "intersections": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "surfaces": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "gpuTopology": {
+          "type": "object",
+          "required": ["topology"],
+          "properties": {
+            "topology": {
+              "type": "object",
+              "required": ["overlays"],
+              "properties": {
+                "overlays": {
+                  "type": "array",
+                  "items": { "type": "object" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
