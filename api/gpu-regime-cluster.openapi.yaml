@@ -1,1 +1,44 @@
+openapi: 3.1.0
+info:
+  title: RTT/12 GPU Regime Cluster API
+  version: "2026.1"
+
+paths:
+  /gpu-regime-cluster:
+    post:
+      summary: Build RTT/12 GPU regime cluster
+      operationId: gpuRegimeCluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GpuRegimeClusterInput"
+      responses:
+        "200":
+          description: Successful RTT/12 regime cluster computation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GpuRegimeClusterOutput"
+
+components:
+  schemas:
+    GpuRegimeClusterInput:
+      $ref: "./gpu-regime-cluster.schema.json"
+
+    GpuRegimeClusterOutput:
+      type: object
+      properties:
+        engine:
+          type: string
+          example: "RTT/12"
+        operator:
+          type: string
+          example: "gpu-regime-cluster"
+        version:
+          type: string
+          example: "2026.1"
+        cluster:
+          type: object
 
