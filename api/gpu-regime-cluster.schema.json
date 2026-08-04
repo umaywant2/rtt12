@@ -1,1 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTT/12 GPU Regime Cluster",
+  "version": "2026.1",
+  "type": "object",
 
+  "properties": {
+    "topology": {
+      "type": "object",
+      "properties": {
+        "surfaces": { "type": "array" },
+        "overlays": { "type": "array" }
+      },
+      "required": ["surfaces", "overlays"]
+    }
+  },
+
+  "required": ["topology"]
+}
