@@ -1,1 +1,128 @@
+openapi: 3.1.0
+info:
+  title: RTT/12 Coherence Dashboard API
+  version: 2026.1
+  description: >
+    Converts unifiedTopology from RTT/12 synthesis into a structured dashboard
+    model using the RTT/12 Coherence Dashboard Graph.
+
+servers:
+  - url: /api/rtt12/dashboard
+    description: Local dashboard rendering endpoint
+
+paths:
+  /coherence/render:
+    post:
+      summary: Render RTT/12 coherence dashboard model
+      operationId: rtt12CoherenceDashboardRender
+      description: >
+        Accepts unifiedTopology from RTT/12 synthesis and produces a structured
+        dashboard model containing clusters, regime surfaces, coherence–drift
+        overlays, GPU-aligned topology, and metadata.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UnifiedTopology"
+
+      responses:
+        "200":
+          description: Dashboard model successfully rendered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardOutput"
+
+        "400":
+          description: Dashboard validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorOutput"
+
+components:
+  schemas:
+
+    UnifiedTopology:
+      type: object
+      required:
+        - clusters
+        - regimeSurfaces
+        - coherenceDrift
+        - gpuAligned
+        - metadata
+      properties:
+        clusters:
+          type: array
+          items: { type: object }
+        regimeSurfaces:
+          type: array
+          items: { type: object }
+        coherenceDrift:
+          type: array
+          items: { type: object }
+        gpuAligned:
+          type: array
+          items: { type: object }
+        metadata:
+          type: object
+          properties:
+            engine:
+              type: string
+              example: "RTT/12"
+            version:
+              type: string
+              example: "2026.1"
+            pipeline:
+              type: string
+              example: "rtt1→rtt2→rtt3→rtt12"
+            timestamp:
+              type: number
+
+    DashboardOutput:
+      type: object
+      description: Structured dashboard model produced by RTT/12 renderer.
+      properties:
+        engine:
+          type: string
+          example: "RTT/12"
+        version:
+          type: string
+          example: "2026.1"
+        graph:
+          type: object
+          description: Dashboard graph definition.
+        dashboard:
+          type: object
+          properties:
+            clusters:
+              type: array
+              items: { type: object }
+            regimeSurfaces:
+              type: array
+              items: { type: object }
+            coherenceDrift:
+              type: array
+              items: { type: object }
+            gpuAligned:
+              type: array
+              items: { type: object }
+            metadata:
+              type: object
+            isEmpty:
+              type: boolean
+              example: false
+
+    ErrorOutput:
+      type: object
+      description: Dashboard validation error envelope.
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: "U12-DASH-002: Missing field 'clusters'"
 
