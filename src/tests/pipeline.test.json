@@ -1,1 +1,185 @@
+{
+  "tests": [
+    {
+      "id": "rtt12.pipeline.001",
+      "description": "Full pipeline succeeds with valid RTT/1 → RTT/2 → RTT/3 → RTT/12 inputs",
+      "input": {
+        "rtt1": {
+          "claritySurface": {},
+          "loadBearing": {},
+          "contradictionScan": {},
+          "structuralCritique": {}
+        },
+        "rtt2": {
+          "gpuStack": {
+            "regimeView": {},
+            "driftView": {},
+            "coherenceView": {}
+          }
+        },
+        "rtt3": {
+          "structuralTopology": [],
+          "intersections": [],
+          "surfaces": [],
+          "gpuTopology": {
+            "topology": {
+              "surfaces": [],
+              "intersections": [],
+              "overlays": []
+            }
+          }
+        }
+      },
+      "expected": {
+        "engine": "RTT/12",
+        "version": "2026.1",
+        "unifiedTopology": {
+          "clusters": [],
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {
+            "pipeline": "rtt1→rtt2→rtt3→rtt12"
+          }
+        }
+      }
+    },
+
+    {
+      "id": "rtt12.pipeline.002",
+      "description": "Fails when RTT/1 claritySurface is missing",
+      "input": {
+        "rtt1": {
+          "loadBearing": {},
+          "contradictionScan": {},
+          "structuralCritique": {}
+        },
+        "rtt2": {
+          "gpuStack": {
+            "regimeView": {},
+            "driftView": {},
+            "coherenceView": {}
+          }
+        },
+        "rtt3": {
+          "structuralTopology": [],
+          "intersections": [],
+          "surfaces": [],
+          "gpuTopology": {
+            "topology": {
+              "surfaces": [],
+              "intersections": [],
+              "overlays": []
+            }
+          }
+        }
+      },
+      "expectedError": "U12-PIPE-001: Missing RTT/1 field 'claritySurface'"
+    },
+
+    {
+      "id": "rtt12.pipeline.003",
+      "description": "Fails when RTT/2 gpuStack.regimeView is missing",
+      "input": {
+        "rtt1": {
+          "claritySurface": {},
+          "loadBearing": {},
+          "contradictionScan": {},
+          "structuralCritique": {}
+        },
+        "rtt2": {
+          "gpuStack": {
+            "driftView": {},
+            "coherenceView": {}
+          }
+        },
+        "rtt3": {
+          "structuralTopology": [],
+          "intersections": [],
+          "surfaces": [],
+          "gpuTopology": {
+            "topology": {
+              "surfaces": [],
+              "intersections": [],
+              "overlays": []
+            }
+          }
+        }
+      },
+      "expectedError": "U12-PIPE-002: Missing RTT/2 field 'regimeView'"
+    },
+
+    {
+      "id": "rtt12.pipeline.004",
+      "description": "Fails when RTT/3 gpuTopology.topology.overlays is missing",
+      "input": {
+        "rtt1": {
+          "claritySurface": {},
+          "loadBearing": {},
+          "contradictionScan": {},
+          "structuralCritique": {}
+        },
+        "rtt2": {
+          "gpuStack": {
+            "regimeView": {},
+            "driftView": {},
+            "coherenceView": {}
+          }
+        },
+        "rtt3": {
+          "structuralTopology": [],
+          "intersections": [],
+          "surfaces": [],
+          "gpuTopology": {
+            "topology": {
+              "surfaces": [],
+              "intersections": []
+            }
+          }
+        }
+      },
+      "expectedError": "U12-PIPE-003: Missing RTT/3 GPU topology field 'overlays'"
+    },
+
+    {
+      "id": "rtt12.pipeline.005",
+      "description": "Validates pipeline metadata block",
+      "input": {
+        "rtt1": {
+          "claritySurface": {},
+          "loadBearing": {},
+          "contradictionScan": {},
+          "structuralCritique": {}
+        },
+        "rtt2": {
+          "gpuStack": {
+            "regimeView": {},
+            "driftView": {},
+            "coherenceView": {}
+          }
+        },
+        "rtt3": {
+          "structuralTopology": [],
+          "intersections": [],
+          "surfaces": [],
+          "gpuTopology": {
+            "topology": {
+              "surfaces": [],
+              "intersections": [],
+              "overlays": []
+            }
+          }
+        }
+      },
+      "expected": {
+        "unifiedTopology": {
+          "metadata": {
+            "engine": "RTT/12",
+            "version": "2026.1"
+          }
+        }
+      }
+    }
+  ]
+}
 
