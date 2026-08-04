@@ -1,1 +1,179 @@
+/* ---------------------------------------------------------
+   RTT/12 — Canonical Stylesheet
+   ---------------------------------------------------------
+   Defines the visual identity for RTT/12 synthesis, dashboard,
+   pipeline validation, and aggregate views.
+   --------------------------------------------------------- */
 
+/* ------------------------------
+   Base Theme
+   ------------------------------ */
+
+:root {
+  --rtt12-bg: #000000;
+  --rtt12-bg-alt: #0a0a0a;
+
+  --rtt12-text: #ffffff;
+  --rtt12-text-dim: #cccccc;
+
+  /* RTT/12 Regime Colors */
+  --rtt12-S: #00e5ff;   /* Structural */
+  --rtt12-E: #ff00e5;   /* Energetic */
+  --rtt12-R: #ffe500;   /* Resonant */
+
+  /* UI Accents */
+  --rtt12-border: #222222;
+  --rtt12-panel: #111111;
+  --rtt12-panel-alt: #161616;
+
+  --rtt12-radius: 8px;
+  --rtt12-radius-sm: 4px;
+
+  --rtt12-font: "Inter", "Segoe UI", sans-serif;
+}
+
+/* ------------------------------
+   Global
+   ------------------------------ */
+
+body {
+  background: var(--rtt12-bg);
+  color: var(--rtt12-text);
+  font-family: var(--rtt12-font);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  margin: 0.75rem 0;
+  color: var(--rtt12-text-dim);
+}
+
+/* ------------------------------
+   Panels
+   ------------------------------ */
+
+.rtt12-panel {
+  background: var(--rtt12-panel);
+  border: 1px solid var(--rtt12-border);
+  border-radius: var(--rtt12-radius);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.rtt12-panel-alt {
+  background: var(--rtt12-panel-alt);
+  border: 1px solid var(--rtt12-border);
+  border-radius: var(--rtt12-radius);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* ------------------------------
+   Regime Tags
+   ------------------------------ */
+
+.tag-S {
+  color: var(--rtt12-S);
+  border: 1px solid var(--rtt12-S);
+  padding: 4px 8px;
+  border-radius: var(--rtt12-radius-sm);
+  font-size: 0.85rem;
+}
+
+.tag-E {
+  color: var(--rtt12-E);
+  border: 1px solid var(--rtt12-E);
+  padding: 4px 8px;
+  border-radius: var(--rtt12-radius-sm);
+  font-size: 0.85rem;
+}
+
+.tag-R {
+  color: var(--rtt12-R);
+  border: 1px solid var(--rtt12-R);
+  padding: 4px 8px;
+  border-radius: var(--rtt12-radius-sm);
+  font-size: 0.85rem;
+}
+
+/* ------------------------------
+   Metadata Blocks
+   ------------------------------ */
+
+.rtt12-meta {
+  background: var(--rtt12-panel);
+  border-left: 4px solid var(--rtt12-S);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.rtt12-meta strong {
+  color: var(--rtt12-text);
+}
+
+/* ------------------------------
+   Tables
+   ------------------------------ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+table th, table td {
+  border: 1px solid var(--rtt12-border);
+  padding: 0.75rem;
+}
+
+table th {
+  background: var(--rtt12-panel-alt);
+  color: var(--rtt12-text);
+  font-weight: 600;
+}
+
+table td {
+  background: var(--rtt12-panel);
+  color: var(--rtt12-text-dim);
+}
+
+/* ------------------------------
+   Code Blocks
+   ------------------------------ */
+
+pre, code {
+  background: #111111;
+  color: var(--rtt12-S);
+  padding: 0.75rem;
+  border-radius: var(--rtt12-radius-sm);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   Buttons
+   ------------------------------ */
+
+.rtt12-btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: var(--rtt12-radius-sm);
+  background: var(--rtt12-S);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.rtt12-btn:hover {
+  opacity: 0.8;
+}
