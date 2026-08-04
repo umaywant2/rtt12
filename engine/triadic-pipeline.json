@@ -1,1 +1,81 @@
+{
+  "engine": "RTT/12",
+  "version": "2026.1",
+  "role": "Triadic Pipeline Manifest",
+  "pipeline": {
+    "lineage": [
+      "RTT/1",
+      "RTT/2",
+      "RTT/3",
+      "RTT/12"
+    ],
+    "required": {
+      "rtt1": [
+        "claritySurface"
+      ],
+      "rtt2": [
+        "gpuStack.regimeView",
+        "gpuStack.driftView",
+        "gpuStack.coherenceView"
+      ],
+      "rtt3": [
+        "structuralTopology",
+        "intersections",
+        "surfaces",
+        "gpuTopology.topology.overlays"
+      ]
+    },
+    "outputs": {
+      "rtt12": [
+        "clusters",
+        "regimeSurfaces",
+        "coherenceDrift",
+        "gpuAligned",
+        "metadata"
+      ]
+    }
+  },
+  "modules": {
+    "pipelineEngine": {
+      "files": [
+        "src/pipeline/pipeline-engine.js",
+        "src/pipeline/pipeline-engine.graph.js",
+        "src/pipeline/pipeline-engine.worker.js",
+        "src/pipeline/pipeline-engine.openapi.yaml"
+      ]
+    },
+    "synthesisEngine": {
+      "files": [
+        "src/synthesis/rtt12-synthesis.js",
+        "src/synthesis/unify.worker.js",
+        "src/synthesis/unify.server.js",
+        "src/synthesis/unify.client.js",
+        "src/synthesis/unify.openapi.yaml",
+        "src/synthesis/unify.schema.json"
+      ]
+    },
+    "dashboardEngine": {
+      "files": [
+        "src/dashboard/coherence-dashboard.js",
+        "src/dashboard/coherence-dashboard.graph.js",
+        "src/dashboard/coherence-dashboard.worker.js",
+        "src/dashboard/coherence-dashboard.openapi.yaml"
+      ]
+    },
+    "aggregateEngine": {
+      "files": [
+        "src/aggregate/aggregator.js",
+        "src/aggregate/aggregator.graph.js",
+        "src/aggregate/aggregator.worker.js",
+        "src/aggregate/aggregator.openapi.yaml"
+      ]
+    }
+  },
+  "metadata": {
+    "canonical": true,
+    "stable": true,
+    "pipeline": "rtt1→rtt2→rtt3→rtt12",
+    "description": "Unified TriadicFrameworks pipeline manifest for RTT/12."
+  }
+}
 
