@@ -1,1 +1,97 @@
+{
+  "tests": [
+    {
+      "id": "rtt12.dashboard.001",
+      "description": "Dashboard receives a complete unifiedTopology object",
+      "input": {
+        "unifiedTopology": {
+          "clusters": [],
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {
+            "engine": "RTT/12",
+            "version": "2026.1"
+          }
+        }
+      },
+      "expected": {
+        "ok": true,
+        "dashboard": {
+          "hasClusters": true,
+          "hasSurfaces": true,
+          "hasDrift": true,
+          "hasGpu": true,
+          "hasMetadata": true
+        }
+      }
+    },
+
+    {
+      "id": "rtt12.dashboard.002",
+      "description": "Dashboard fails when unifiedTopology is missing",
+      "input": {},
+      "expectedError": "U12-DASH-001: Missing unifiedTopology"
+    },
+
+    {
+      "id": "rtt12.dashboard.003",
+      "description": "Dashboard fails when clusters are missing",
+      "input": {
+        "unifiedTopology": {
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {}
+        }
+      },
+      "expectedError": "U12-DASH-002: Missing field 'clusters'"
+    },
+
+    {
+      "id": "rtt12.dashboard.004",
+      "description": "Dashboard validates metadata block",
+      "input": {
+        "unifiedTopology": {
+          "clusters": [],
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {
+            "engine": "RTT/12",
+            "version": "2026.1",
+            "timestamp": 1234567890
+          }
+        }
+      },
+      "expected": {
+        "dashboard": {
+          "metadata": {
+            "engine": "RTT/12",
+            "version": "2026.1"
+          }
+        }
+      }
+    },
+
+    {
+      "id": "rtt12.dashboard.005",
+      "description": "Dashboard detects empty topology",
+      "input": {
+        "unifiedTopology": {
+          "clusters": [],
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {}
+        }
+      },
+      "expected": {
+        "dashboard": {
+          "isEmpty": true
+        }
+      }
+    }
+  ]
+}
 
