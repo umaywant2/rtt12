@@ -1,1 +1,88 @@
+{
+  "tests": [
+    {
+      "id": "rtt12.aggregate.001",
+      "description": "Validates RTT/12 unified topology structure",
+      "input": {
+        "structuralTopology": [],
+        "intersections": [],
+        "surfaces": [],
+        "gpuTopology": {
+          "topology": {
+            "surfaces": [],
+            "intersections": [],
+            "overlays": []
+          }
+        }
+      },
+      "expected": {
+        "engine": "RTT/12",
+        "version": "2026.1",
+        "unifiedTopology": {
+          "clusters": [],
+          "regimeSurfaces": [],
+          "coherenceDrift": [],
+          "gpuAligned": [],
+          "metadata": {}
+        }
+      }
+    },
+
+    {
+      "id": "rtt12.aggregate.002",
+      "description": "Fails when structuralTopology is missing",
+      "input": {
+        "intersections": [],
+        "surfaces": [],
+        "gpuTopology": {
+          "topology": {
+            "surfaces": [],
+            "intersections": [],
+            "overlays": []
+          }
+        }
+      },
+      "expectedError": "U12-001: Missing field 'structuralTopology'"
+    },
+
+    {
+      "id": "rtt12.aggregate.003",
+      "description": "Fails when gpuTopology.topology is malformed",
+      "input": {
+        "structuralTopology": [],
+        "intersections": [],
+        "surfaces": [],
+        "gpuTopology": {
+          "topology": {
+            "surfaces": [],
+            "intersections": []
+          }
+        }
+      },
+      "expectedError": "U12-002: GPU topology missing required field 'overlays'"
+    },
+
+    {
+      "id": "rtt12.aggregate.004",
+      "description": "Validates metadata block presence",
+      "input": {
+        "structuralTopology": [],
+        "intersections": [],
+        "surfaces": [],
+        "gpuTopology": {
+          "topology": {
+            "surfaces": [],
+            "intersections": [],
+            "overlays": []
+          }
+        }
+      },
+      "expected": {
+        "unifiedTopology": {
+          "metadata": {}
+        }
+      }
+    }
+  ]
+}
 
