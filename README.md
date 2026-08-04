@@ -1,4 +1,10 @@
-# rtt12  
+<img width="693" height="693" alt="harmonia_rtt12" src="https://github.com/user-attachments/assets/b3e5a518-048e-436f-a531-9d97bab005f5" />
+
+# RTT12  
+
+- [`module.json`](https://raw.githubusercontent.com/umaywant2/rtt12/refs/heads/main/module.json) — Agentic module schema role assignments 
+- [`engine.json`](https://raw.githubusercontent.com/umaywant2/rtt12/refs/heads/main/engine.json) — Agentic module schema engine assignments
+
 **RTT/12 Engine**  
 Unified Topology Synthesis Layer
 
