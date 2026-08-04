@@ -1,1 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTT/12 Aggregate Model Schema",
+  "description": "Schema for RTT/12 unified aggregation of topology, dashboard, and pipeline metadata.",
+  "type": "object",
+
+  "properties": {
+    "unifiedTopology": {
+      "$ref": "#/$defs/UnifiedTopology"
+    },
+    "dashboardModel": {
+      "$ref": "#/$defs/DashboardModel"
+    },
+    "pipelineMetadata": {
+      "$ref": "#/$defs/PipelineMetadata"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "engine": { "type": "string" },
+        "version": { "type": "string" },
+        "pipeline": { "type": "string" },
+        "aggregated": { "type": "boolean" }
+      },
+      "required": ["engine", "version", "pipeline", "aggregated"]
+    }
+  },
+
+  "required": [
+    "unifiedTopology",
+    "dashboardModel",
+    "pipelineMetadata",
+    "metadata"
+  ],
+
+  "$defs": {
+
+    "UnifiedTopology": {
+      "type": "object",
+      "required": [
+        "clusters",
+        "regimeSurfaces",
+        "coherenceDrift",
+        "gpuAligned",
+        "metadata"
+      ],
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "regimeSurfaces": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "coherenceDrift": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "gpuAligned": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+
+    "DashboardModel": {
+      "type": "object",
+      "required": [
+        "clusters",
+        "regimeSurfaces",
+        "coherenceDrift",
+        "gpuAligned",
+        "metadata",
+        "isEmpty"
+      ],
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "regimeSurfaces": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "coherenceDrift": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "gpuAligned": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "isEmpty": {
+          "type": "boolean"
+        }
+      }
+    },
+
+    "PipelineMetadata": {
+      "type": "object",
+      "required": [
+        "engine",
+        "version",
+        "pipeline",
+        "validated"
+      ],
+      "properties": {
+        "engine": { "type": "string" },
+        "version": { "type": "string" },
+        "pipeline": { "type": "string" },
+        "validated": { "type": "boolean" }
+      }
+    }
+  }
+}
 
