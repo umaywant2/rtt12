@@ -1,1 +1,137 @@
+openapi: 3.1.0
+info:
+  title: RTT/12 Pipeline Validation API
+  version: "2026.1"
+  description: |
+    Validates RTT/1, RTT/2, and RTT/3 structures and produces
+    canonical RTT/12 pipeline metadata.
+
+servers:
+  - url: /api
+
+paths:
+  /pipeline/validate:
+    post:
+      summary: Validate RTT pipeline lineage
+      description: |
+        Validates RTT/1 → RTT/2 → RTT/3 inputs and produces RTT/12
+        pipeline metadata required for unified synthesis.
+      operationId: validatePipeline
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineRequest"
+
+      responses:
+        "200":
+          description: Successful pipeline validation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineResponse"
+
+        "400":
+          description: Invalid request payload
+        "500":
+          description: Internal pipeline validation error
+
+components:
+  schemas:
+
+    PipelineRequest:
+      type: object
+      required:
+        - rtt1
+        - rtt2
+        - rtt3
+      properties:
+        rtt1:
+          $ref: "#/components/schemas/RTT1"
+        rtt2:
+          $ref: "#/components/schemas/RTT2"
+        rtt3:
+          $ref: "#/components/schemas/RTT3"
+
+    PipelineResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: "#/components/schemas/PipelineMetadata"
+        error:
+          type: string
+          nullable: true
+
+    RTT1:
+      type: object
+      required:
+        - claritySurface
+      properties:
+        claritySurface:
+          type: object
+
+    RTT2:
+      type: object
+      required:
+        - regimeView
+        - driftView
+        - coherenceView
+      properties:
+        regimeView:
+          type: object
+        driftView:
+          type: object
+        coherenceView:
+          type: object
+
+    RTT3:
+      type: object
+      required:
+        - structuralTopology
+        - intersections
+        - surfaces
+        - gpuTopology
+      properties:
+        structuralTopology:
+          type: object
+        intersections:
+          type: array
+          items: { type: object }
+        surfaces:
+          type: array
+          items: { type: object }
+        gpuTopology:
+          type: object
+          required:
+            - topology
+          properties:
+            topology:
+              type: object
+              required:
+                - overlays
+              properties:
+                overlays:
+                  type: array
+                  items: { type: object }
+
+    PipelineMetadata:
+      type: object
+      required:
+        - engine
+        - version
+        - pipeline
+        - validated
+      properties:
+        engine:
+          type: string
+        version:
+          type: string
+        pipeline:
+          type: string
+        validated:
+          type: boolean
 
