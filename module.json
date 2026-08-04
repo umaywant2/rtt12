@@ -1,1 +1,112 @@
+{
+  "identity": {
+    "module": "RTT/12",
+    "title": "Unified Topology Synthesis",
+    "description": "Final synthesis engine for RTT series. Consumes RTT/3 topology and produces unified RTT/12 topology.",
+    "version": "2026.1"
+  },
+
+  "engine": {
+    "name": "RTT/12",
+    "role": "Unified Topology Synthesis",
+    "stage": "final",
+    "inputs": [
+      "structuralTopology",
+      "intersections",
+      "surfaces",
+      "gpuTopology"
+    ],
+    "outputs": [
+      "unifiedTopology"
+    ]
+  },
+
+  "session": {
+    "canon": "TriadicFrameworks",
+    "series": "RTT",
+    "layer": "Synthesis",
+    "format": "engine-module",
+    "audience": "technical"
+  },
+
+  "analyzer_layer": {
+    "regime": true,
+    "drift": true,
+    "coherence": true,
+    "cross_cutting": true
+  },
+
+  "files": [
+    {
+      "path": "src/synthesis/rtt12-synthesis.js",
+      "role": "operator",
+      "description": "RTT/12 synthesis operator implementation."
+    },
+    {
+      "path": "src/synthesis/rtt12-synthesis.worker.js",
+      "role": "worker",
+      "description": "Worker wrapper for RTT/12 synthesis."
+    },
+    {
+      "path": "src/synthesis/rtt12-synthesis.openapi.yaml",
+      "role": "openapi",
+      "description": "OpenAPI specification for RTT/12 synthesis endpoint."
+    },
+    {
+      "path": "src/synthesis/rtt12-synthesis.schema.json",
+      "role": "schema",
+      "description": "JSON Schema for RTT/12 synthesis input/output."
+    },
+    {
+      "path": "api/unify.client.js",
+      "role": "client",
+      "description": "Client wrapper for RTT/12 unify endpoint."
+    },
+    {
+      "path": "api/unify.server.js",
+      "role": "server",
+      "description": "Server handler for RTT/12 unify endpoint."
+    },
+    {
+      "path": "api/unify.worker.js",
+      "role": "worker",
+      "description": "Worker wrapper for RTT/12 unify endpoint."
+    },
+    {
+      "path": "api/unify.openapi.yaml",
+      "role": "openapi",
+      "description": "OpenAPI specification for RTT/12 unify endpoint."
+    },
+    {
+      "path": "api/unify.schema.json",
+      "role": "schema",
+      "description": "JSON Schema for RTT/12 unify endpoint."
+    },
+    {
+      "path": "api/unify.test.js",
+      "role": "test",
+      "description": "Test suite for RTT/12 unify client."
+    },
+    {
+      "path": "assets/js/rtt12.js",
+      "role": "engine",
+      "description": "RTT/12 engine identity and operator registry."
+    },
+    {
+      "path": "assets/css/rtt12.css",
+      "role": "style",
+      "description": "RTT/12 documentation and engine styling."
+    },
+    {
+      "path": "assets/og/rtt12.png",
+      "role": "asset",
+      "description": "Open Graph image for RTT/12."
+    }
+  ],
+
+  "status": {
+    "stable": true,
+    "lastUpdated": "2026-08-04"
+  }
+}
 
