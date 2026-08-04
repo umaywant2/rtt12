@@ -1,1 +1,49 @@
+{
+  "engine": "RTT/12",
+  "version": "2026.1",
+  "role": "Unified Topology Synthesis",
+  "description": "Final synthesis engine for RTT series. Consumes RTT/3 topology and produces unified RTT/12 topology.",
+  
+  "inputs": {
+    "structuralTopology": "RTT/3 structural topology",
+    "intersections": "RTT/3 intersections",
+    "surfaces": "RTT/3 coherence surfaces",
+    "gpuTopology": "RTT/3 GPU topology"
+  },
+
+  "outputs": {
+    "unifiedTopology": "Unified RTT/12 topology object"
+  },
+
+  "operators": {
+    "unify": "/src/synthesis/rtt12-synthesis.js"
+  },
+
+  "api": {
+    "client": "/api/unify.client.js",
+    "server": "/api/unify.server.js",
+    "worker": "/api/unify.worker.js",
+    "openapi": "/api/unify.openapi.yaml",
+    "schema": "/api/unify.schema.json",
+    "test": "/api/unify.test.js"
+  },
+
+  "assets": {
+    "js": "/assets/js/rtt12.js",
+    "css": "/assets/css/rtt12.css",
+    "og": "/assets/og/rtt12.png"
+  },
+
+  "identity": {
+    "series": "RTT",
+    "layer": "Synthesis",
+    "stage": "Final",
+    "canon": "TriadicFrameworks"
+  },
+
+  "status": {
+    "stable": true,
+    "lastUpdated": "2026-08-04"
+  }
+}
 
