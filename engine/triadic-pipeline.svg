@@ -1,1 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="960"
+     height="540"
+     viewBox="0 0 960 540">
+
+  <style>
+    .stage-box {
+      fill: #0b1020;
+      stroke: #4fc3f7;
+      stroke-width: 2;
+      rx: 8;
+    }
+    .stage-title {
+      fill: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .stage-body {
+      fill: #cfd8dc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+    .arrow {
+      stroke: #4fc3f7;
+      stroke-width: 2;
+      marker-end: url(#arrowhead);
+    }
+    .label {
+      fill: #b0bec5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+    }
+    .header {
+      fill: #ffffff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .subheader {
+      fill: #b0bec5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+    }
+    .meta {
+      fill: #78909c;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11px;
+    }
+  </style>
+
+  <defs>
+    <marker id="arrowhead"
+            markerWidth="10"
+            markerHeight="7"
+            refX="9"
+            refY="3.5"
+            orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4fc3f7" />
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="40" y="60" class="header">RTT/12 Triadic Pipeline</text>
+  <text x="40" y="85" class="subheader">Lineage: RTT/1 → RTT/2 → RTT/3 → RTT/12</text>
+  <text x="40" y="105" class="meta">Engine: RTT/12 · Version: 2026.1 · Role: Unified Topology Synthesis</text>
+
+  <!-- RTT/1 -->
+  <rect x="60" y="160" width="180" height="140" class="stage-box" />
+  <text x="80" y="185" class="stage-title">RTT/1 — Substrate</text>
+  <text x="80" y="210" class="stage-body">• claritySurface</text>
+  <text x="80" y="230" class="stage-body">• loadBearing</text>
+  <text x="80" y="250" class="stage-body">• contradictionScan</text>
+  <text x="80" y="270" class="stage-body">• structuralCritique</text>
+
+  <!-- RTT/2 -->
+  <rect x="280" y="160" width="180" height="140" class="stage-box" />
+  <text x="300" y="185" class="stage-title">RTT/2 — GPU Stack</text>
+  <text x="300" y="210" class="stage-body">• regimeView</text>
+  <text x="300" y="230" class="stage-body">• driftView</text>
+  <text x="300" y="250" class="stage-body">• coherenceView</text>
+
+  <!-- RTT/3 -->
+  <rect x="500" y="160" width="200" height="160" class="stage-box" />
+  <text x="520" y="185" class="stage-title">RTT/3 — Topology</text>
+  <text x="520" y="210" class="stage-body">• structuralTopology</text>
+  <text x="520" y="230" class="stage-body">• intersections</text>
+  <text x="520" y="250" class="stage-body">• surfaces</text>
+  <text x="520" y="270" class="stage-body">• gpuTopology.topology</text>
+  <text x="520" y="290" class="stage-body">• gpuTopology.topology.overlays</text>
+
+  <!-- RTT/12 -->
+  <rect x="740" y="160" width="180" height="180" class="stage-box" />
+  <text x="760" y="185" class="stage-title">RTT/12 — Synthesis</text>
+  <text x="760" y="210" class="stage-body">• clusters</text>
+  <text x="760" y="230" class="stage-body">• regimeSurfaces</text>
+  <text x="760" y="250" class="stage-body">• coherenceDrift</text>
+  <text x="760" y="270" class="stage-body">• gpuAligned</text>
+  <text x="760" y="290" class="stage-body">• metadata.pipeline</text>
+  <text x="760" y="310" class="stage-body">  rtt1→rtt2→rtt3→rtt12</text>
+
+  <!-- Arrows -->
+  <line x1="240" y1="230" x2="280" y2="230" class="arrow" />
+  <text x="245" y="220" class="label">validated</text>
+
+  <line x1="460" y1="230" x2="500" y2="230" class="arrow" />
+  <text x="465" y="220" class="label">validated</text>
+
+  <line x1="700" y1="230" x2="740" y2="230" class="arrow" />
+  <text x="705" y="220" class="label">validated</text>
+
+  <!-- Bottom metadata -->
+  <text x="40" y="360" class="meta">
+    Required: RTT/1 claritySurface · RTT/2 regimeView/driftView/coherenceView · RTT/3 structuralTopology/intersections/surfaces/gpuTopology.topology.overlays
+  </text>
+  <text x="40" y="380" class="meta">
+    Downstream: Coherence Dashboard · Aggregator · Diagnostics · UI Layers
+  </text>
+</svg>
 
